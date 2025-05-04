@@ -10,6 +10,22 @@
 
   <!-- CSS tambahan untuk styling khusus -->
   <style>
+    /* Background header agar lebih modern dan menarik */
+    .header-custom {
+      background: linear-gradient(to right, #007bff, #6610f2); /* gradasi warna */
+      transition: all 0.5s ease; /* transisi halus */
+      position: sticky; /* agar tetap di atas saat scroll */
+      top: 0;
+      z-index: 1000;
+    }
+
+    /* Class tambahan untuk menghilangkan header saat scroll */
+    .header-hidden {
+      opacity: 0;
+      filter: blur(5px);
+      pointer-events: none;
+    }
+
     /* Class untuk memberi jarak antar elemen */
     .jarak {
       margin-bottom: 20px;
@@ -22,10 +38,12 @@
   </style>
 </head>
 <body>
-  <!-- Header: bagian atas halaman dengan judul -->
-  <header class="bg-primary text-white text-center py-4"> <!-- Header berwarna biru, teks putih, rata tengah, padding vertikal 4 -->
-    <h1>Blog Teknologi</h1>
-    <p class="lead">Detail Artikel</p>
+  <!-- Header: Judul dan deskripsi singkat blog -->
+  <header class="header-custom text-white text-center py-3 shadow"> <!-- Gradasi warna, teks putih, tengah, padding vertikal, bayangan -->
+    <div class="container"> <!-- Membungkus konten header -->
+      <h1 class="display-4 fw-bold">Blog Teknologi</h1> <!-- Judul besar dan tebal -->
+      <p class="lead">Detail Artikel</p> <!-- Subjudul -->
+    </div>
   </header>
 
   <!-- Konten Artikel -->
@@ -71,5 +89,18 @@
   <footer class="bg-dark text-white text-center py-3"> <!-- Footer latar gelap, teks putih, rata tengah, padding vertikal 3-->
     <p>&copy; 2025 Blog Teknologi</p>
   </footer>
+
+  <!-- Script untuk efek scroll pada header -->
+  <script>
+    const header = document.querySelector('.header-custom');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        header.classList.add('header-hidden'); // Tambah efek blur+fade
+      } else {
+        header.classList.remove('header-hidden'); // Hapus efek jika scroll ke atas
+      }
+    });
+  </script>
+  
 </body>
 </html>
